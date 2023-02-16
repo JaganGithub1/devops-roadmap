@@ -1,5 +1,3 @@
-# DevOps Roadmap
-
 | Цель | Что нужно для изучения и Задания | Как поймем что цель достигнута? | Примерная дата окончания изучения 
 |-|-|-|-
 | Linux | Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYuE4z-3BgLYGkZrs-cF4Tep и сделать все задания https://github.com/eabykov/devops-linux | Может устанавливать программы, знает основные команды и может их применять, что такое ядро linux, знает основные папки есть в `/`, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/linux и https://github.com/bregman-arie/devops-exercises#operating-system---self-assessment | 01.03.2023
