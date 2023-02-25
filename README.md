@@ -10,3 +10,7 @@
 | Сети, сетевые технологии | Прочесть статью https://habr.com/ru/post/326574/ , https://ru.wikipedia.org/wiki/Маска_подсети и https://habr.com/ru/post/711578/ | Понимает что такое 'пакет', знает уровни TCP/IP, что такое DNS, что такое HTTP протокол и REST, что такое IP и маска подсети, как на linux посмотреть сетевые интерфейсы, сниффинг трафика, что такое Nginx (как выглядит конфиг) и балансировка, вопросы https://github.com/bregman-arie/devops-exercises#network и https://github.com/bregman-arie/devops-exercises/tree/master/topics/dns | 01.05.2023 | | 
 | Kubernetes | Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi и https://github.com/eabykov/kubernetes запускать локально через Docker Desktop и поставить linkerd | Понимает зачем нужен Kubernetes, как устанавливать приложения через helm, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/kubernetes | 01.06.2023 | | 
 | Мониторинг | Prometheus + Grafana + metric-server, ELK стек (логи), Трейсинг | Понимает как создавать алерты (оповещения), может настроить мониторинг Kubernetes и приложений в нем, вопросы https://github.com/bregman-arie/devops-exercises#prometheus , https://github.com/bregman-arie/devops-exercises#monitoring и https://github.com/bregman-arie/devops-exercises#elastic | 01.06.2023 | | 
+
+### GitLab 
+
+GitLab - это Git с веб интерфейсом вместе с возможностью добавления CI/CD пайплайнов (В GitHub пайплайн делают через Actions)
