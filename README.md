@@ -10,3 +10,25 @@
 | Сети, сетевые технологии - как попасть в консоль удаленного сервера, как у нас идет трафик в интернете и тд | Прочесть статью https://habr.com/ru/post/326574/ , https://ru.wikipedia.org/wiki/Маска_подсети и https://habr.com/ru/post/711578/ | SSH, что такое 'пакет', знает уровни TCP/IP, что такое DNS, что такое HTTP протокол и REST, что такое IP и маска подсети, как на linux посмотреть сетевые интерфейсы, сниффинг трафика, что такое Nginx (как выглядит конфиг) и балансировка, вопросы https://github.com/bregman-arie/devops-exercises#network и https://github.com/bregman-arie/devops-exercises/tree/master/topics/dns | 01.05.2023 | | 
 | Kubernetes - приводит состояние кластера из пункта А в пункт С, нужно только обьяснить с помощью yaml манифестов чего хотим в пункте С | Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi и https://github.com/eabykov/kubernetes запускать локально через Docker Desktop и поставить linkerd | Понимает зачем нужен Kubernetes, как устанавливать приложения через helm, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/kubernetes | 01.06.2023 | | 
 | Сбор исторических данных о нашей системе, Linux серверах, показателей приложений и их логов, сетевых метрик, оповещение если что-то пошло не так | Prometheus + Grafana + metric-server, ELK стек (логи), Трейсинг | Понимает как создавать алерты (оповещения), может настроить мониторинг Kubernetes и приложений в нем, вопросы https://github.com/bregman-arie/devops-exercises#prometheus , https://github.com/bregman-arie/devops-exercises#monitoring и https://github.com/bregman-arie/devops-exercises#elastic | 01.06.2023 | | 
+
+### Пример простого CI в GitHub в котором будет собран наш образ
+
+```yml
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+```
+
+Необходимо добавить шаг с push образа в docker registry (например DockerHub)
