@@ -13,6 +13,8 @@
 
 ### Пример простого CI в GitHub в котором будет собран наш образ
 
+`.github/workflows/docker-build.yml`
+
 ```yml
 name: Docker Image CI
 
