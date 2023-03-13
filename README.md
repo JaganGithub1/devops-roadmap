@@ -13,24 +13,6 @@
 | Terraform. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYujWDTYb-Zbofdl44Jxb2l8 до 17 | Понимает зачем нужен Terraform, знает как создавать ресурсы (например виртуальную машину), где хранится состояние (информация) о том что сделал terraform, вопросы https://habr.com/ru/company/southbridge/blog/528206/ | 15.04.2023 | | 
 | Kubernetes - приводит состояние кластера из пункта А в пункт С, нужно только обьяснить с помощью yaml манифестов чего хотим в пункте С. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi и https://github.com/eabykov/kubernetes запускать локально через Docker Desktop и поставить linkerd | Понимает зачем нужен Kubernetes, как устанавливать приложения через helm, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/kubernetes | 01.06.2023 | | 
 
-### Пример простого CI в GitLab в котором будет собран наш образ
-
-`.gitlab-ci.yml`
-
-```yml
-image: ubuntu:22.04
-
-stages:
-  - build
-
-my_build:
-  stage: build
-  script: |-
-    docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-  when:
-    - if "$CI_COMMIT_BRANCH" == "main"
-```
-
 Необходимо добавить шаг с push образа в docker registry (например DockerHub)
 
 ### Благодаря каким механизмам работает Docker
