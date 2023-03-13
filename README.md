@@ -12,19 +12,3 @@
 | Ansible. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYufspdPupdynbMQTBnZd31N до 20 | Понимает зачем нужен Ansible, что такое идемпотентность, что такое playbook, умеет писать свои роли, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/ansible | 15.04.2023 | | 
 | Terraform. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYujWDTYb-Zbofdl44Jxb2l8 до 17 | Понимает зачем нужен Terraform, знает как создавать ресурсы (например виртуальную машину), где хранится состояние (информация) о том что сделал terraform, вопросы https://habr.com/ru/company/southbridge/blog/528206/ | 15.04.2023 | | 
 | Kubernetes - приводит состояние кластера из пункта А в пункт С, нужно только обьяснить с помощью yaml манифестов чего хотим в пункте С. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi и https://github.com/eabykov/kubernetes запускать локально через Docker Desktop и поставить linkerd | Понимает зачем нужен Kubernetes, как устанавливать приложения через helm, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/kubernetes | 01.06.2023 | | 
-
-Необходимо добавить шаг с push образа в docker registry (например DockerHub)
-
-### Благодаря каким механизмам работает Docker
-
-Как вы уже знаете, в ядре Linux из коробки есть все необходимые механизмы для создания контейнеров:
-
-- capabilities - позволяет выдать процессу часть расширенных прав, которые доступны только root. Например, разрешить удалять чужие файлы, завершать другие процессы (команда kill) или изменять атрибуты у файлов (команда chown);
-- namespace - это абстракция в Linux, с помощью которой можно создавать своё изолированное окружение в ОС. То есть такую коробочку, в которой свои пользователи, своя сеть, свои процессы и всё остальное. При этом изменения в namespace видны только членам этого namespace. Есть шесть типов пространств имён (namespaces): IPC, Network, Mount, PID, User, UTS.
-
-Например:
-
-- Network namespace отвечает за ресурсы, связанные с сетью. У каждого namespace будут свои сетевые интерфейсы, свои таблицы маршрутизации.
-- User namespace специализируется на пользователях и группах в рамках namespace.
-- PID namespace заведует набором ID процессов. Первый процесс, созданный в новом namespace, имеет PID = 1, а дочерним процессам назначаются следующие PID.
-- cgroup объединяет несколько процессов в группу и управляет ресурсами для этой группы.
