@@ -7,11 +7,15 @@
 | CI/CD, выполнение автоматически действий по триггеру (например commit, merge, etc.) или расписанию. В курсе https://www.youtube.com/watch?list=PLg5SS_4L6LYstwxTEOU05E0URTHnbtA0l 15й и 16й, https://youtu.be/tE3u1LquFcg?t=212 скорость 1.25, https://github.com/gitlabhq/gitlabhq/blob/master/doc/ci/docker/using_kaniko.md `.gitlab-ci.yml` как собирать Docker Image в GitLab правильно | Сделал автоматическую сборку своего Docker Image и отправку dockerhub хранилище образов (registry) , GitLab CI/CD основные понятия, из каких шагов состоит идеальный пайплайн, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/cicd | 15.03.2023 | [x] |
 | Мониторинг - сбор исторических данных о нашей системе https://youtu.be/wDan20_WyNg использовать пример https://github.com/ruanbekker/docker-monitoring-stack-gpnc , Linux серверах, показателей приложений и их логов, сетевых метрик, оповещение если что-то пошло не так. Prometheus + Grafana + metric-server, ELK стек https://youtu.be/ZcC3BTChCY0?t=110 и https://github.com/docker/awesome-compose/tree/master/elasticsearch-logstash-kibana , Трейсинг https://youtu.be/7Dyf4AiUAcQ | Понимает как создавать алерты (оповещения), может настроить мониторинг Docker, linux host и Kubernetes с приложениями в нем (после изучения Kubernetes), вопросы https://github.com/bregman-arie/devops-exercises#prometheus , https://github.com/bregman-arie/devops-exercises#monitoring и https://github.com/bregman-arie/devops-exercises#elastic | 01.04.2023 | |
 | Сети, сетевые технологии - как попасть в консоль удаленного сервера, как у нас идет трафик в интернете и тд. Прочесть статью https://habr.com/ru/post/326574/ , https://ru.wikipedia.org/wiki/Маска_подсети и https://habr.com/ru/post/711578/ | SSH, что такое 'пакет', знает уровни TCP/IP, что такое DNS, что такое HTTP протокол и REST, что такое IP и маска подсети, как на linux посмотреть сетевые интерфейсы, сниффинг трафика, что такое Nginx (как выглядит конфиг) и балансировка, вопросы https://github.com/bregman-arie/devops-exercises#network и https://github.com/bregman-arie/devops-exercises/tree/master/topics/dns | 01.04.2023 | | 
-| Ansible. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYufspdPupdynbMQTBnZd31N до 20 | Понимает зачем нужен Ansible, что такое идемпотентность, что такое playbook, умеет писать свои роли, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/ansible | 15.04.2023 | | 
+| Ansible. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYufspdPupdynbMQTBnZd31N 1,6,10,12 | Понимает зачем нужен Ansible, что такое идемпотентность, что такое playbook, умеет писать свои роли, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/ansible | 15.04.2023 | | 
 | Terraform. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYujWDTYb-Zbofdl44Jxb2l8 до 17 | Понимает зачем нужен Terraform, знает как создавать ресурсы (например виртуальную машину), где хранится состояние (информация) о том что сделал terraform, вопросы https://habr.com/ru/company/southbridge/blog/528206/ | 15.04.2023 | | 
 | Kubernetes - приводит состояние кластера из пункта А в пункт С, нужно только обьяснить с помощью yaml манифестов чего хотим в пункте С. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi и https://github.com/eabykov/kubernetes запускать локально через Docker Desktop и поставить linkerd | Понимает зачем нужен Kubernetes, как устанавливать приложения через helm, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/kubernetes | 01.06.2023 | | 
 
 ```yaml
+- name: Install nginx   # устанавливаем nginx на удаленном сервере
+  ansible.builtin.apt:
+    name: nginx        # какую программу будет устанавливать (запустит apt install -y nginx)
+
 - name: Copy local nginx config to remote hosts # имя задачи, чтобы мы понимали что делает
   ansible.builtin.copy:
     src: /home/aider/ansible/nginx.conf         # где файл лежит у нас на компе
@@ -19,4 +23,11 @@
     owner: aider                                # кто будет хозяином файла на удаленной машине
     group: aider                                # какая группа будет у файла на удаленной машине
     mode: u=rw,g=r,o=r                          # какие права будут у файла на удаленной машине
+
+- name: restart nginx # перезапустить nginx
+  service:
+    name: nginx       # с каким сервисом будем работать
+    state: restarted  # перезапустить nginx
+    enabled: yes      # запускать nginx при перезапуске системы
 ```
+
