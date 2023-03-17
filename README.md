@@ -10,3 +10,13 @@
 | Ansible. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYufspdPupdynbMQTBnZd31N до 20 | Понимает зачем нужен Ansible, что такое идемпотентность, что такое playbook, умеет писать свои роли, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/ansible | 15.04.2023 | | 
 | Terraform. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYujWDTYb-Zbofdl44Jxb2l8 до 17 | Понимает зачем нужен Terraform, знает как создавать ресурсы (например виртуальную машину), где хранится состояние (информация) о том что сделал terraform, вопросы https://habr.com/ru/company/southbridge/blog/528206/ | 15.04.2023 | | 
 | Kubernetes - приводит состояние кластера из пункта А в пункт С, нужно только обьяснить с помощью yaml манифестов чего хотим в пункте С. Пройти курс https://www.youtube.com/watch?list=PLg5SS_4L6LYvN1RqaVesof8KAf-02fJSi и https://github.com/eabykov/kubernetes запускать локально через Docker Desktop и поставить linkerd | Понимает зачем нужен Kubernetes, как устанавливать приложения через helm, вопросы https://github.com/bregman-arie/devops-exercises/tree/master/topics/kubernetes | 01.06.2023 | | 
+
+```yaml
+- name: Copy local nginx config to remote hosts # имя задачи, чтобы мы понимали что делает
+  ansible.builtin.copy:
+    src: /home/aider/ansible/nginx.conf         # где файл лежит у нас на компе
+    dest: /etc/nginx/nginx.conf                 # то куда файл попадет на удаленных хостах
+    owner: aider                                # кто будет хозяином файла на удаленной машине
+    group: aider                                # какая группа будет у файла на удаленной машине
+    mode: u=rw,g=r,o=r                          # какие права будут у файла на удаленной машине
+```
